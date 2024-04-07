@@ -397,32 +397,32 @@ class WithdrawPage(tk.Frame):
 
 
 
-        twenty_button=tk.Button(button_frame,text='$20',font=('orbitron',12),command=lambda:withdraw(20),relief='raised',borderwidth=3,width=30,height=4)
+        twenty_button=tk.Button(button_frame,text='₹20',font=('orbitron',12),command=lambda:withdraw(20),relief='raised',borderwidth=3,width=30,height=4)
         twenty_button.grid(row=0,column=0,pady=5)
 
-        fourty_button=tk.Button(button_frame,text='$40',font=('orbitron',12),command=lambda:withdraw(40),relief='raised',borderwidth=3,width=30,height=4)
+        fourty_button=tk.Button(button_frame,text='₹40',font=('orbitron',12),command=lambda:withdraw(40),relief='raised',borderwidth=3,width=30,height=4)
         fourty_button.grid(row=1,column=0,pady=5)
 
-        sixty_button=tk.Button(button_frame,text='$60',font=('orbitron',12),command=lambda:withdraw(60),relief='raised',borderwidth=3,width=30,height=4)
+        sixty_button=tk.Button(button_frame,text='₹60',font=('orbitron',12),command=lambda:withdraw(60),relief='raised',borderwidth=3,width=30,height=4)
         sixty_button.grid(row=2,column=0,pady=5)
 
-        eighty_button=tk.Button(button_frame,text='$80',font=('orbitron',12),command=lambda:withdraw(80),relief='raised',borderwidth=3,width=30,height=4)
+        eighty_button=tk.Button(button_frame,text='₹80',font=('orbitron',12),command=lambda:withdraw(80),relief='raised',borderwidth=3,width=30,height=4)
         eighty_button.grid(row=3,column=0,pady=5)
 
-        one_hundred_button=tk.Button(button_frame,text='$100',font=('orbitron',12),command=lambda:withdraw(100),relief='raised',borderwidth=3,width=30,height=4)
+        one_hundred_button=tk.Button(button_frame,text='₹100',font=('orbitron',12),command=lambda:withdraw(100),relief='raised',borderwidth=3,width=30,height=4)
         one_hundred_button.grid(row=0,column=1,pady=5,padx=794)
 
-        two_hundred_button=tk.Button(button_frame,text='$200',font=('orbitron',12),command=lambda:withdraw(200),relief='raised',borderwidth=3,width=30,height=4)
+        two_hundred_button=tk.Button(button_frame,text='₹200',font=('orbitron',12),command=lambda:withdraw(200),relief='raised',borderwidth=3,width=30,height=4)
         two_hundred_button.grid(row=1,column=1,pady=5)
 
-        three_hundred_button=tk.Button(button_frame,text='$300',font=('orbitron',12),command=lambda:withdraw(300),relief='raised',borderwidth=3,width=30,height=4)
+        three_hundred_button=tk.Button(button_frame,text='₹300',font=('orbitron',12),command=lambda:withdraw(300),relief='raised',borderwidth=3,width=30,height=4)
         three_hundred_button.grid(row=2,column=1,pady=5)
 
         cash=tk.StringVar()
         other_amount_entry=tk.Entry(button_frame,font=('orbitron',12),textvariable=cash,width=28,justify='right')
         other_amount_entry.grid(row=3,column=1,pady=4,ipady=30)
 
-        other_amount_heading=tk.Button(button_frame,text='Other amount in dollars',font=('orbitron',13),borderwidth=0,relief='sunken',activeforeground='white',activebackground='#33334d',bg='#33334d',fg='white')
+        other_amount_heading=tk.Button(button_frame,text='Other amount in ruppes',font=('orbitron',13),borderwidth=0,relief='sunken',activeforeground='white',activebackground='#33334d',bg='#33334d',fg='white')
         other_amount_heading.grid(row=4,column=1)
 
         def other_amount(_):
@@ -541,7 +541,7 @@ class BalancePage(tk.Frame):
         exit_button.pack(pady=5)
 
     def on_balance_changed(self, *args):
-        self.balance_var.set('Current Balance: $'+str(self.controller.shared_data['Balance'].get()))
+        self.balance_var.set('Current Balance: ₹'+str(self.controller.shared_data['Balance'].get()))
 
 class InfoPage(tk.Frame):
 
@@ -729,6 +729,8 @@ def login_verify():
                   current_balance=user_balance_1
                   screen2.destroy()
                   screen.destroy()
+
+                  
                   ######## Face Authentication ##########
                   # Create the main Tkinter window
                   root = tk.Tk()
@@ -742,6 +744,9 @@ def login_verify():
                   else:
                       print("Failed")
                       main_screen()
+                      messagebox.showwarning('WARNING',('Face Mismatch !'))
+
+                      
               elif password1!= str(user_pass_1):
                   password_not_recognised()
           else:
@@ -768,7 +773,7 @@ def register():
     global rand
     screen1 = Toplevel(screen)
     screen1.title("Register")
-    screen1.geometry("380x470") 
+    screen1.geometry("400x550") 
     screen1.configure(bg='lightblue')
     screen1.iconphoto(False, ImageTk.PhotoImage(file='Images/abc.png'))
 
@@ -808,8 +813,11 @@ def register():
 
     Label(screen1, text="", bg='lightblue').pack()
 
-    # Button to enroll face
-    Button(screen1, text="Enroll Face", command=lambda:enroll_face(rand), bg='blue', activebackground='lightblue',relief=FLAT).pack(pady=5)
+     # Button to enroll face
+    img2 = PhotoImage(file="Images/face.png")
+    photoimage2 = img2.subsample(3, 3)
+    img2Btn = Button(screen1, text="Enroll Face", command=lambda:enroll_face(rand), bg='lightblue', activebackground='lightblue',relief=FLAT,image=photoimage2).pack(pady=5)
+
 
     Label(screen1, text="", bg='lightblue').pack()
     img1 = PhotoImage(file="Images/register_final.png")
