@@ -142,7 +142,6 @@ class CameraApp:
             x = (screen_width - self.root.winfo_width()) // 2
             y = (screen_height - self.root.winfo_height()) // 2
             self.root.geometry("+{}+{}".format(x, y))
-
             self.root.after(10, self.show_camera_feed)
 
 
@@ -742,9 +741,9 @@ def login_verify():
                   if ans:
                       abcd()
                   else:
-                      print("Failed")
-                      main_screen()
                       messagebox.showwarning('WARNING',('Face Mismatch !'))
+                      main_screen()
+                      
 
                       
               elif password1!= str(user_pass_1):
